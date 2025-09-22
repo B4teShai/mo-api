@@ -71,9 +71,10 @@ describe('UserService', () => {
     it('should create a new user', async () => {
       const userData: UserDto = {
         role: ['ADMIN'],
-        firstName: 'Chantsal',
-        lastName: 'Sharav',
-        phoneNumber: '99509101',
+        email: 'mosda6353@gmail.com',
+        firstName: '',
+        lastName: '',
+        phoneNumber: '',
         password: 'superPa$$',
       }; // Add valid user data
       const expectedResult = {}; // Add expected result

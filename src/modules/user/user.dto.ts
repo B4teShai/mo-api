@@ -14,9 +14,6 @@ import { UserRoles } from 'globals/constants';
 
 export class UserDto {
   @ApiPropertyOptional()
-  @IsArray()
-  @ValidateNested({ each: true })
-  @IsIn(Object.values(UserRoles), { message: 'Хэрэглэгчийн эрх буруу байна' })
   readonly role: string[];
 
   @ApiProperty()
