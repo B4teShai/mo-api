@@ -20,7 +20,7 @@
     "test:e2e": "jest --config ./src/test/jest-e2e.json",
     "release": "standard-version",
     "commit": "git-cz",
-    "prepare": "husky install"
+    "prepare": "husky install || true"
   },
   "dependencies": {
     "@blazity/nest-file-fastify": "^1.0.0",
