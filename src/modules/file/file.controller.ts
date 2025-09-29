@@ -24,30 +24,40 @@ export class FileController {
   }
 
   @Get('id/:id')
-  async getFileById(@Param('id') id: string, @Res() res: FastifyReply) {
+  async getFileById(@Param('id') id: string) {
     try {
       const file = await this.fileService.getFile(id);
-      
-      res.header('Content-Type', file.mimeType);
-      res.header('Content-Length', file.size.toString());
-      res.header('Content-Disposition', `inline; filename="${file.filename}"`);
-      
-      return res.send(file.data);
+      return file;
+    } catch (error) {
+      throw new HttpException('File not found', HttpStatus.NOT_FOUND);
+    }
+  }
+
+  @Get('id/:id/url')
+  async getFileUrl(@Param('id') id: string) {
+    try {
+      const file = await this.fileService.getFile(id);
+      return { url: file.url };
+    } catch (error) {
+      throw new HttpException('File not found', HttpStatus.NOT_FOUND);
+    }
+  }
+
+  @Get('signed/:id')
+  async getSignedUrl(@Param('id') id: string) {
+    try {
+      const result = await this.fileService.getSignedUrl(id);
+      return result;
     } catch (error) {
       throw new HttpException('File not found', HttpStatus.NOT_FOUND);
     }
   }
 
   @Get(':path')
-  async getFile(@Param('path') path: string, @Res() res: FastifyReply) {
+  async getFile(@Param('path') path: string) {
     try {
       const file = await this.fileService.getFileByPath(path);
-      
-      res.header('Content-Type', file.mimeType);
-      res.header('Content-Length', file.size.toString());
-      res.header('Content-Disposition', `inline; filename="${file.filename}"`);
-      
-      return res.send(file.data);
+      return file;
     } catch (error) {
       throw new HttpException('File not found', HttpStatus.NOT_FOUND);
     }
