@@ -2,7 +2,11 @@ import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/sequelize';
 import { File as FileModel } from 'models/file.entity';
 import { File } from '@nest-lab/fastify-multer';
-import { S3Client, PutObjectCommand, GetObjectCommand } from '@aws-sdk/client-s3';
+import {
+  S3Client,
+  PutObjectCommand,
+  GetObjectCommand,
+} from '@aws-sdk/client-s3';
 import { getSignedUrl } from '@aws-sdk/s3-request-presigner';
 import { ConfigService } from '@nestjs/config';
 
@@ -38,7 +42,7 @@ export class FileService {
 
     try {
       await this.s3Client.send(new PutObjectCommand(uploadParams));
-      
+
       const publicUrl = `https://jimuqcexytslhjueyhnw.supabase.co/storage/v1/object/public/${bucketName}/${key}`;
 
       const fileRecord = await this.fileRepository.create({
