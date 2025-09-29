@@ -10,6 +10,7 @@ import {
   NestFastifyApplication,
 } from '@nestjs/platform-fastify';
 import { join } from 'path';
+import { mkdirSync, existsSync } from 'fs';
 
 dotenv.config();
 

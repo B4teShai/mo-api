@@ -49,6 +49,8 @@ CREATE TABLE IF NOT EXISTS `file` (
   `filename` varchar(255) NOT NULL,
   `size` int NOT NULL,
   `path` varchar(255) NOT NULL,
+  `data` longblob NOT NULL,
+  `mimeType` varchar(255) NOT NULL,
   `createdAt` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `updatedAt` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)

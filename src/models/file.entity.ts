@@ -21,4 +21,12 @@ export class File extends Model<File> {
 
   @Column
   filename: string;
+
+  @Column({
+    type: DataTypes.BLOB('long'),
+  })
+  data: Buffer;
+
+  @Column
+  mimeType: string;
 }
